@@ -1,0 +1,65 @@
+class Business {
+    private String name;
+    private String owner;
+    private double funds;
+    private static int totalBusinesses = 0;
+    public static final double TAX_RATE = 0.1;
+ 
+    public Business(String _name, String _owner, double _funds) {
+        name = _name;
+        owner = _owner;
+        funds = _funds;
+        totalBusinesses++;
+    }
+ 
+    public void payTaxes() {
+        funds -= funds * TAX_RATE;
+    }
+    
+    public void PrintMe(){
+        System.out.println("Business: " + name);
+        System.out.println("Owner: " + owner);
+        System.out.println("Funds before taxes: " +funds);
+        payTaxes();
+        System.out.println("Funds after taxes: " + funds);
+    }
+ 
+    class Employee {
+        private String name;
+        private String role;
+        private double salary;
+ 
+        public Employee(String _name, String _role, double _salary) {
+            name = _name;
+            role = _role;
+            salary = _salary;
+        }
+        
+        public void PrintMe(){
+            System.out.println("Employee: " + name + "| Role: " + role + " | Salary: $" + salary + "/hour");
+        }
+    }
+    
+}
+ 
+public class BloxburgGame {
+    
+    public static void main(String[] args) {
+System.out.println("Welcome to Bloxburg Business Simulator!");
+        
+        Business pizzaPlace = new Business("Pizza Palace", "Alex", 5000);
+        
+        Business tacoPlace = new Business("Taco Planet", "Tyler", 30000);
+        
+        System.out.println("Total businesses created: " + totalBusinesses);
+        
+        pizzaPlace.PrintMe();
+        
+        Business.Employee pizzaEmployee = pizzaPlace.new Employee("John", "Chef", 15);
+        pizzaEmployee.PrintMe();
+        
+        tacoPlace.PrintMe();
+        Business.Employee tacoEmployee = tacoPlace.new Employee("Jesus", "Chief Taco Engineer", 32);
+        tacoEmployee.PrintMe();
+    }
+}
